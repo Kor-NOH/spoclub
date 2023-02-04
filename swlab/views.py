@@ -9,3 +9,7 @@ class Sub(APIView):
 class Register(APIView):
     def get(self, request):
         return render(request, "swlab/register.html")
+
+class Login(APIView):
+    def get(self, request):
+        return render(request, "swlab/login.html")
