@@ -17,11 +17,12 @@
 </script>
 <div style="background: #FAFAFA">
     <div style="display: flex; justify-content: center; width: 100%">
-        <div style="border: solid 1px rgba(219, 219, 219, 1); width: 300px; height: 510px; margin-top: 30px; background: azure">
+        <div style="border: solid 1px rgba(219, 219, 219, 1); width: 300px; height: 460px; margin-top: 30px; background: azure">
             <div style="text-align: center">
                 <div>
-                    <img style="width: 200px" style="height: 30px"
+                    <a href="main"><img style="width: 200px" style="height: 30px"
                          src="http://snslab.cu.ac.kr/data/common/6e78f50f6b9455e42cb6.png">
+                    </a>
                 </div>
                 <div style="font-weight: bold; color: gray; padding-bottom: 20px; padding-top: 20px">가입 시, swlab이 제공하는 모든 서비스를 이용하실 수 있습니다.</div>
                 <div class="form-floating mb-3">
@@ -43,17 +44,12 @@
                     <input type="password" class="form-control" style="font-size: 14px; height: 24px" id="input_pw_again"
                            placeholder="name@example.com">
                     <label for="input_pw_again" style="font-size: 14px;padding: 4px 10px">비밀번호 확인</label>
-                    <span id="checkNotice" style="font-size: x-small; "></span>
+                    <span id="checkNoticepw" style="font-size: x-small; "></span>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_schoolssn"
                            placeholder="name@example.com">
                     <label for="input_schoolssn" style="font-size: 14px;padding: 4px 10px">학번을 입력하세요</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_schoolssn_again"
-                           placeholder="name@example.com">
-                    <label for="input_schoolssn_again" style="font-size: 14px;padding: 4px 10px">학번 확인</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_phonenum"
@@ -107,14 +103,13 @@
 
     $(function (){
         $('#input_pw').keyup(function (){
-            $('#chkNotice').html('');
+            $('#chkNoticepw').html('');
         });
-
         $('#input_pw_again').keyup(function (){
             if($('#input_pw').val() !== $('#input_pw_again').val()){
-                $('#checkNotice').html('비밀번호 일치하지 않음');
+                $('#checkNoticepw').html('비밀번호 일치하지 않음');
             } else{
-                $('#checkNotice').html('');
+                $('#checkNoticepw').html('');
             }
         });
     });
