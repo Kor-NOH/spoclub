@@ -43,6 +43,7 @@
                     <input type="password" class="form-control" style="font-size: 14px; height: 24px" id="input_pw_again"
                            placeholder="name@example.com">
                     <label for="input_pw_again" style="font-size: 14px;padding: 4px 10px">비밀번호 확인</label>
+                    <span id="checkNotice" style="font-size: x-small; "></span>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_schoolssn"
@@ -103,6 +104,20 @@
         }
         })
     })
+
+    $(function (){
+        $('#input_pw').keyup(function (){
+            $('#chkNotice').html('');
+        });
+
+        $('#input_pw_again').keyup(function (){
+            if($('#input_pw').val() !== $('#input_pw_again').val()){
+                $('#checkNotice').html('비밀번호 일치하지 않음');
+            } else{
+                $('#checkNotice').html('');
+            }
+        });
+    });
 </script>
 </body>
 </html>
