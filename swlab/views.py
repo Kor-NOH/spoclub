@@ -39,11 +39,14 @@ class Login(APIView):
         pw = request.data.get('pw', None)
 
         user = User.objects.filter(id=id).first()
+
         if user is None:
-            return Response(status=400, data=dict(message="회원정보가 잘못되었습니다."))
-        if user.check_password(pw):
-            return Response(status=200)
+            print("wrong id")
+            return Response(status=400)
         else:
-            return Response(status=400, data=dict(message="회원정보가 잘못되었습니다."))
-
-
+            if user.pw == pw:
+                print("Good JOB!!")
+                return Response(status=200)
+            else:
+                print("wrong pw")
+                return Response(status=400)
