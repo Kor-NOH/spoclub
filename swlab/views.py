@@ -45,8 +45,12 @@ class Login(APIView):
             return Response(status=400)
         else:
             if user.pw == pw:
-                print("Good JOB!!")
+                print("correct your id,pw")
                 return Response(status=200)
             else:
                 print("wrong pw")
                 return Response(status=400)
+
+class Profile(APIView):
+    def get(self, request):
+        return render(request, "swlab/profile.html")
