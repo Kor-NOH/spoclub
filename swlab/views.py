@@ -54,3 +54,8 @@ class Login(APIView):
 class Profile(APIView):
     def get(self, request):
         return render(request, "swlab/profile.html")
+
+class Logout(APIView):
+    def get(self, request):
+        request.session.flush()
+        return render(request, "swlab/login.html")

@@ -30,11 +30,15 @@
                     <button type="button" onclick="location.href='register'">회원가입</button>
                 </li>
             </ul>
-            <div>
-                <a href="profile">
-                    <img style="width: 40px" style="height: 15px" class="profile"
-                         src="https://cdn-icons-png.flaticon.com/512/742/742751.png">
-                </a>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    프로필
+                </button>
+                <ul class="dropdown-menu" style="left: -100px">
+                    <li><a class="dropdown-item" href="profile">내 정보</a></li>
+                    <li><a class="dropdown-item" href="logout">로그아웃</a></li>
+                </ul>
             </div>
         </div>
     </div>
