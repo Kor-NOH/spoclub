@@ -30,17 +30,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <button style="padding-left: 10px" type="button" onclick="location.href='main'">메인</button>
-                    <button style="padding-left: 10px" type="button" onclick="location.href='login'">로그인</button>
+                    <!-- 네비바 버튼 비 활성화
+                    <button type="button" onclick="location.href='main'">메인</button>
+                    <button type="button" onclick="location.href='login'">로그인</button>
                     <button type="button" onclick="location.href='register'">회원가입</button>
+                    -->
                 </li>
             </ul>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                    프로필
+                    더보기
                 </button>
                 <ul class="dropdown-menu" style="left: -100px">
+                    <li><a class="dropdown-item" href="main">메인</a></li>
                     <li><a class="dropdown-item" href="profile">내 정보</a></li>
                     <li><a class="dropdown-item" href="logout">로그아웃</a></li>
                 </ul>

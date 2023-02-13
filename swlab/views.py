@@ -9,7 +9,19 @@ from django.contrib.auth import authenticate, login
 
 class Sub(APIView):
     def get(self, request):
-        return render(request, "swlab/main.html")
+
+        print('로그인한 사용자 :', request.session['id'])
+        id = request.session['id']
+
+        if id is None:
+            return render(request, "login")
+
+        user = User.objects.filter(id=id).first()
+
+        if user is None:
+            return render(request, "login")
+
+        return render(request, "swlab/main.html", context=dict(user=user))
 
 
 class Register(APIView):
@@ -88,14 +100,15 @@ class Login(APIView):
         id = request.data.get('id', None)
         pw = request.data.get('pw', None)
         CHuser = User.objects.filter(id=id).first()
-        
+
         if CHuser is None:
             print("wrong id")
             return Response(status=400)
         else:
             if CHuser.pw == pw:
                 print("correct your id,pw")
-                return render(request, status=200)
+                request.session['id'] = id
+                return Response(status=200)
             else:
                 print("wrong pw")
                 return Response(status=400)
