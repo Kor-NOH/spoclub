@@ -23,25 +23,52 @@ class Register(APIView):
         phonenum = request.data.get('phonenum', None)
         schoolssn = request.data.get('schoolssn', None)
         try:
+            # 이름(실명) 입력이 공백일 때
             if name == '':
                 messages.info(request, '이름(실명)을 입력해주세요.')
                 return Response( status=400)
+            # 아이디 입력이 공백일 때
             if id == '':
                 messages.info(request, '아이디를 입력해주세요.')
                 return Response(status=400)
+            # 비밀번호 입력이 공백일 때
             if pw == '':
                 messages.info(request, '비밀번호를 입력해주세요.')
                 return Response(status=400)
+            # 비밀번호 확인 입력이 공백일 때
             if pw_again == '':
                 messages.info(request, '비밀번호 확인을 입력해주세요.')
                 return Response(status=400)
+            # 학번 입력이 공백일 때
             if schoolssn == '':
                 messages.info(request, '학번 입력해주세요.')
                 return Response(status=400)
+            # 전화번호 입력이 공백일 때
             if phonenum == '':
                 messages.info(request, '전화번호를 입력해주세요.')
                 return Response(status=400)
+            # 아이디 중복일 때
+            if User.objects.filter(id=id).exists():
+                messages.info(request, '이미 가입된 아이디입니다.')
+                return Response(status=400)
+            # 학번 중복일 때
+            if User.objects.filter(schoolssn=schoolssn).exists():
+                messages.info(request, '이미 가입된 학번입니다.')
+                return Response(status=400)
+            # 전화번호 중복일 때
+            if User.objects.filter(phonenum=phonenum).exists():
+                messages.info(request, '이미 가입된 전화번호입니다.')
+                return Response(status=400)
+            # 비밀번호 입력과 확인이 다를 때
+            if pw_again != pw:
+                messages.info(request, '비밀번호가 동일하지 않습니다.')
+                return Response(status=400)
+            # 비밀번호 8~20 자리가 아닐 때
+            if len(pw) < 8 or len(pw) > 20:
+                messages.info(request, '비밀번호가 8~20자리가 아닙니다.')
+                return Response(status=400)
 
+        # 키 에러
         except KeyError:
             return Response({'message': "KEY_ERROR"}, status=400)
         User.objects.create(name=name,
