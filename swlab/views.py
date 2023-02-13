@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from user.models import User
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.hashers import check_password
 from rest_framework.response import Response
+from django.contrib import messages
 
 
 class Sub(APIView):
@@ -19,9 +19,31 @@ class Register(APIView):
         name = request.data.get('name', None)
         id = request.data.get('id', None)
         pw = request.data.get('pw', None)
+        pw_again = request.data.get('pw_again', None)
         phonenum = request.data.get('phonenum', None)
         schoolssn = request.data.get('schoolssn', None)
+        try:
+            if name == '':
+                messages.info(request, '이름(실명)을 입력해주세요.')
+                return Response( status=400)
+            if id == '':
+                messages.info(request, '아이디를 입력해주세요.')
+                return Response(status=400)
+            if pw == '':
+                messages.info(request, '비밀번호를 입력해주세요.')
+                return Response(status=400)
+            if pw_again == '':
+                messages.info(request, '비밀번호 확인을 입력해주세요.')
+                return Response(status=400)
+            if schoolssn == '':
+                messages.info(request, '학번 입력해주세요.')
+                return Response(status=400)
+            if phonenum == '':
+                messages.info(request, '전화번호를 입력해주세요.')
+                return Response(status=400)
 
+        except KeyError:
+            return Response({'message': "KEY_ERROR"}, status=400)
         User.objects.create(name=name,
                             id=id,
                             pw=make_password(pw),
@@ -39,7 +61,6 @@ class Login(APIView):
         pw = request.data.get('pw', None)
 
         user = User.objects.filter(id=id).first()
-
         if user is None:
             print("wrong id")
             return Response(status=400)
@@ -53,7 +74,9 @@ class Login(APIView):
 
 class Profile(APIView):
     def get(self, request):
-        return render(request, "swlab/profile.html")
+        user_list = User.objects.all()
+
+        return render(request, "swlab/profile.html", context=dict(users=user_list))
 
 class Logout(APIView):
     def get(self, request):

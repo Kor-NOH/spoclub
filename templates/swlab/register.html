@@ -30,34 +30,42 @@
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_name"
                            placeholder="name@example.com">
-                    <label for="input_name" style="font-size: 14px;padding: 4px 10px">이름(실명)을 입력하세요</label>
+                    <label for="input_name" style="font-size: 12px;padding: 4px 10px">이름(실명)을 입력하세요</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_id"
                            placeholder="name@example.com">
-                    <label for="input_id" style="font-size: 14px;padding: 4px 10px">아이디를 입력하세요</label>
+                    <label for="input_id" style="font-size: 12px;padding: 4px 10px">아이디를 입력하세요</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="password" class="form-control" style="font-size: 14px; height: 24px" id="input_pw"
                            placeholder="name@example.com">
-                    <label for="input_pw" style="font-size: 14px;padding: 4px 10px">비밀번호를 입력하세요</label>
+                    <label for="input_pw" style="font-size: 12px;padding: 4px 10px">비밀번호를 입력하세요(8~20자리로 입력)</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="password" class="form-control" style="font-size: 14px; height: 24px" id="input_pw_again"
                            placeholder="name@example.com">
-                    <label for="input_pw_again" style="font-size: 14px;padding: 4px 10px">비밀번호 확인</label>
+                    <label for="input_pw_again" style="font-size: 12px;padding: 4px 10px">비밀번호 확인</label>
                     <span id="checkNoticepw" style="font-size: x-small; "></span>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_schoolssn"
                            placeholder="name@example.com">
-                    <label for="input_schoolssn" style="font-size: 14px;padding: 4px 10px">학번을 입력하세요</label>
+                    <label for="input_schoolssn" style="font-size: 12px;padding: 4px 10px">학번을 입력하세요</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_phonenum"
                            placeholder="name@example.com">
-                    <label for="input_phonenum" style="font-size: 14px;padding: 4px 10px">전화번호를 입력하세요</label>
+                    <label for="input_phonenum" style="font-size: 12px;padding: 4px 10px">전화번호를 입력하세요</label>
                 </div>
+                {% if messages %}
+                    <div>
+                        {% for message in messages %}
+                            <p>{{ message.message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
                 <button id="register_button" type="button" class="btn btn-primary" style="width: 100%">회원가입</button>
                 <div style="padding-top: 10px">
                     계정이 이미 있나요? <a href="login"> 로그인 </a>
@@ -73,6 +81,7 @@
         let name = $('#input_name').val();
         let id = $('#input_id').val();
         let pw = $('#input_pw').val();
+        let pw_again = $('#input_pw_again').val();
         let phonenum = $('#input_phonenum').val();
         let schoolssn = $('#input_schoolssn').val();
 
@@ -84,6 +93,7 @@
                 name : name,
                 id : id,
                 pw : pw,
+                pw_again : pw_again,
                 phonenum : phonenum,
                 schoolssn : schoolssn
             },
@@ -96,6 +106,7 @@
             },
             error: function (request, status, error) {
                 console.log("에러");
+                location.replace('/register');
             },
             complete: function () {
                 console.log("완료");
