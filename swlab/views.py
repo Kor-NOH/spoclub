@@ -129,5 +129,5 @@ class Profile(APIView):
 
 class Logout(APIView):
     def get(self, request):
-        request.session.flush()
+        request.session.flush() # 계정 정보 세션 삭제
         return render(request, "swlab/login.html")
