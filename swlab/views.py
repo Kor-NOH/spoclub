@@ -4,6 +4,7 @@ from user.models import User
 from django.contrib.auth.hashers import make_password
 from rest_framework.response import Response
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 
 class Sub(APIView):
@@ -86,15 +87,15 @@ class Login(APIView):
     def post(self, request):
         id = request.data.get('id', None)
         pw = request.data.get('pw', None)
-
-        user = User.objects.filter(id=id).first()
-        if user is None:
+        CHuser = User.objects.filter(id=id).first()
+        
+        if CHuser is None:
             print("wrong id")
             return Response(status=400)
         else:
-            if user.pw == pw:
+            if CHuser.pw == pw:
                 print("correct your id,pw")
-                return Response(status=200)
+                return render(request, status=200)
             else:
                 print("wrong pw")
                 return Response(status=400)
