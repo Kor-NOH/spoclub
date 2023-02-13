@@ -10,7 +10,6 @@ from django.contrib.auth import authenticate, login
 class Sub(APIView):
     def get(self, request):
 
-        print('로그인한 사용자 :', request.session['id'])
         id = request.session['id']
 
         if id is None:
@@ -115,9 +114,18 @@ class Login(APIView):
 
 class Profile(APIView):
     def get(self, request):
-        user_list = User.objects.all()
 
-        return render(request, "swlab/profile.html", context=dict(users=user_list))
+        id = request.session['id']
+
+        if id is None:
+            return render(request, "login")
+
+        user = User.objects.filter(id=id).first()
+
+        if user is None:
+            return render(request, "login")
+
+        return render(request, "swlab/profile.html", context=dict(users=user))
 
 class Logout(APIView):
     def get(self, request):
