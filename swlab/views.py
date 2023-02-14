@@ -7,18 +7,21 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
 
-class Sub(APIView):
+class Main(APIView):
     def get(self, request):
 
         id = request.session['id']
-
-        if id is None:
-            return render(request, "login")
-
         user = User.objects.filter(id=id).first()
 
-        if user is None:
-            return render(request, "login")
+        try:
+            if id is None:
+                return render(request, "swlab/unknow_user_main.html")
+
+            if user is None:
+                return render(request, "login")
+
+        except KeyError:
+            return Response({'message': "KEY_ERROR"}, status=400)
 
         return render(request, "swlab/main.html", context=dict(user=user))
 
@@ -131,3 +134,7 @@ class Logout(APIView):
     def get(self, request):
         request.session.flush() # 계정 정보 세션 삭제
         return render(request, "swlab/login.html")
+
+class Unknow_user_main(APIView):
+    def get(self, request):
+        return render(request, "swlab/unknow_user_main.html")
