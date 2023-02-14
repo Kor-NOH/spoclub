@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from user.models import User
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.response import Response
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -10,18 +10,15 @@ from django.contrib.auth import authenticate, login
 class Main(APIView):
     def get(self, request):
 
-        id = request.session['id']
+        id = request.session.get('id', None)
+
+        if id is None:
+            return render(request, "swlab/unknow_user_main.html")
+
         user = User.objects.filter(id=id).first()
 
-        try:
-            if id is None:
-                return render(request, "swlab/unknow_user_main.html")
-
-            if user is None:
-                return render(request, "login")
-
-        except KeyError:
-            return Response({'message': "KEY_ERROR"}, status=400)
+        if user is None:
+            return render(request, "swlab/unknow_user_main.html")
 
         return render(request, "swlab/main.html", context=dict(user=user))
 
@@ -102,12 +99,13 @@ class Login(APIView):
         id = request.data.get('id', None)
         pw = request.data.get('pw', None)
         CHuser = User.objects.filter(id=id).first()
+        user = User.objects.get(id=id)
 
         if CHuser is None:
             print("wrong id")
             return Response(status=400)
         else:
-            if CHuser.pw == pw:
+            if check_password(pw, user.pw):
                 print("correct your id,pw")
                 request.session['id'] = id
                 return Response(status=200)
@@ -118,15 +116,15 @@ class Login(APIView):
 class Profile(APIView):
     def get(self, request):
 
-        id = request.session['id']
+        id = request.session.get('id', None)
 
         if id is None:
-            return render(request, "login")
+            return render(request, "swlab/unknow_user_main.html")
 
         user = User.objects.filter(id=id).first()
 
         if user is None:
-            return render(request, "login")
+            return render(request, "swlab/unknow_user_main.html")
 
         return render(request, "swlab/profile.html", context=dict(users=user))
 
