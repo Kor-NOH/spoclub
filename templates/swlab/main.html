@@ -16,7 +16,7 @@
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-color: lightgray">
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a href="main"><img style="width: 200px" style="height: 30px"
@@ -52,7 +52,7 @@
 </nav>
 
 <div>
-    <button type="button" style="width: 200px; height: 100px; margin: auto; display: block; position:relative; top: 210px"> ssh 접속하기 </button>
+    <button id="sshbtn" onmousemove="colorChange()" onmouseleave="colorReChange()" type="button" style=" border: medium solid blue; background-color: white; border-radius: 50px; width: 200px; height: 100px; margin: auto; display: block; position:relative; top: 210px"> <a style="font-size: 1.5em; solid-color: blue; font-style: italic">ssh 접속하기 </a></button>
 </div>
 <div style="margin: auto; display: block; position:relative; top: 500px;">
     <a href="https://www.cu.ac.kr/"><img style="width: 200px" style="height: 30px"
@@ -66,5 +66,16 @@
                             src="http://snslab.cu.ac.kr/data/common/6e78f50f6b9455e42cb6.png">
         </a>
 </div>
+<script>
+    function colorChange() {
+        var Bcolor = document.getElementById("sshbtn");
+        Bcolor.style.backgroundColor = "skyblue";
+    }
+
+    function colorReChange() {
+        var Bcolor = document.getElementById("sshbtn");
+        Bcolor.style.backgroundColor = "white";
+    }
+</script>
 </body>
 </html>
