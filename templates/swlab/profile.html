@@ -17,7 +17,7 @@
             crossorigin="anonymous"></script>
 
 </head>
-<body style="background-color: #edffeb">
+<body>
 <nav class="navbar navbar-expand-lg bg-light" >
     <div class="container-fluid">
         <a href="main"><img style="width: 200px" style="height: 30px"
@@ -51,9 +51,13 @@
         </div>
     </div>
 </nav>
-<p> 이름 : {{ users.name }}</p>
-<p> 아이디 : {{ users.id }}</p>
-<p> 전화번호 : {{ users.phonenum }}</p>
-<p> 학번 : {{ users.schoolssn }}</p>
+<div style="border: 6px red; background-color: gray; width: 500px; height: 600px; position: relative; top: 50%; left: 50%; transform: translate(-50%, -5%); text-align: center;">
+    <h1> {{ users.name }}님의 프로필</h1>
+    <p></p>
+    <p> 이름 : {{ users.name }}</p>
+    <p> 아이디 : {{ users.id }}</p>
+    <p> 전화번호 : {{ users.phonenum }}</p>
+    <p> 학번 : {{ users.schoolssn }}</p>
+</div>
 </body>
 </html>
