@@ -45,9 +45,34 @@
         </div>
     </div>
 </nav>
-
 <div>
-    <button onclick="location.href='login'" type="button" style="width: 200px; height: 100px; margin: auto; display: block; position:relative; top: 210px"> 로그인 후 사용해 주세요 </button>
+    <button id="sshbtn" onclick="location.href='login'" onmousemove="colorChange()" onmouseleave="colorReChange()"
+            type="button"
+            style=" border: medium solid blue; background-color: white; border-radius: 50px; width: 200px; height: 100px; margin: auto; display: block; position:relative; top: 210px">
+        <a style="font-size: 1.3em; solid-color: blue; font-style: italic"> 로그인 후 이용해 주세요 </a></button>
 </div>
+<div style="margin: auto; display: block; position:relative; top: 500px;">
+    <a href="https://www.cu.ac.kr/"><img style="width: 200px" style="height: 30px"
+                            src="https://www.cu.ac.kr/images/common/link_logo_active.png">
+        </a>
+
+    <a href="http://code.cu.ac.kr/"><img style="width: 150px" style="height: 20px"
+                            src="http://code.cu.ac.kr/static/img/logo.78eea88.jpg">
+        </a>
+    <a href="http://snslab.cu.ac.kr/"><img style="width: 150px" style="height: 20px"
+                            src="http://snslab.cu.ac.kr/data/common/6e78f50f6b9455e42cb6.png">
+        </a>
+</div>
+<script>
+    function colorChange() {
+        var Bcolor = document.getElementById("sshbtn");
+        Bcolor.style.backgroundColor = "skyblue";
+    }
+
+    function colorReChange() {
+        var Bcolor = document.getElementById("sshbtn");
+        Bcolor.style.backgroundColor = "white";
+    }
+</script>
 </body>
 </html>
