@@ -51,16 +51,13 @@
         </div>
     </div>
 </nav>
-<div style="background-color: gray; width: 600px; height: 600px; position: relative; top: 50%; left: 50%; transform: translate(-50%, -5%);">
-    <div style="background-color: white; width: 550px; height: 550px; position: relative; top: 8%; left: 50%; transform: translate(-50%, -5%);">
-        <h1> {{ users.name }}님의 프로필</h1>
-        <p></p>
-        <div>
-            <p style="position: relative; left: 10%"> 이름 </p>
-            <p style="position: relative; right: 10%"> {{ users.name }} </p>
-        </div>
-    </div>
+<div style="width: 550px; height: 550px; position: relative; top: 8%; left: 50%; transform: translate(-50%, -5%);">
+    <h1> {{ users.name }}님의 프로필</h1>
+    <p></p>
+    <div style="text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 50%"> 이름 </div>
+    <div style="text-align: left; line-height: 40px; height: 40px; border: 1px solid black; float: left; width: 50%; border-radius: 10px"> &nbsp; {{ users.name }}</div>
 
 </div>
+
 </body>
 </html>
