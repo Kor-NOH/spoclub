@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light" >
+<nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a href="main"><img style="width: 200px" style="height: 30px"
                             src="http://snslab.cu.ac.kr/data/common/6e78f50f6b9455e42cb6.png">
@@ -51,13 +51,42 @@
         </div>
     </div>
 </nav>
-<div style="width: 550px; height: 550px; position: relative; top: 8%; left: 50%; transform: translate(-50%, -5%);">
-    <h1> {{ users.name }}님의 프로필</h1>
+<div style="border: solid lightblue; border-radius: 20px; width: 550px; height: 350px; position: relative; top: 15%; left: 50%; transform: translate(-50%, 5%);">
+    <h1 style="text-align: center; border-bottom: solid lightblue"> {{ users.name }}님의 프로필</h1>
     <p></p>
-    <div style="text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 50%"> 이름 </div>
-    <div style="text-align: left; line-height: 40px; height: 40px; border: 1px solid black; float: left; width: 50%; border-radius: 10px"> &nbsp; {{ users.name }}</div>
+    <div style="position: relative; right: 30px">
+        <div style="position:relative; text-align: center; line-height: 40px; top: 10px; height: 40px; border: white; float: left; width: 40%"> 이름
+        </div>
+        <div style="position:relative; text-align: left; line-height: 40px; top: 10px; height: 40px; border: 1px solid black; float: left; width: 50%; border-radius: 10px">
+            &nbsp; {{ users.name }}</div>
+        <button style="position:relative; border-radius: 10px; top: 10px; left: 10px; text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 10%; padding-left: 10px">
+            수정
+        </button>
 
+        <div style="position:relative; top: 30px; text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 40%"> id
+        </div>
+        <div style="position:relative; top: 30px; text-align: left; line-height: 40px; height: 40px; border: 1px solid black; float: left; width: 50%; border-radius: 10px">
+            &nbsp; {{ users.id }}</div>
+        <button style="position:relative; border-radius: 10px; top: 30px; left: 10px; text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 10%; padding-left: 10px">
+            수정
+        </button>
+
+        <div style="position:relative; top: 50px; text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 40%"> 전화번호
+        </div>
+        <div style="position:relative; top: 50px; text-align: left; line-height: 40px; height: 40px; border: 1px solid black; float: left; width: 50%; border-radius: 10px">
+            &nbsp; {{ users.phonenum }}</div>
+        <button style="position:relative; border-radius: 10px; top: 50px; left: 10px; text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 10%; padding-left: 10px">
+            수정
+        </button>
+
+        <div style="position:relative; top: 70px; text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 40%"> 학번
+        </div>
+        <div style="position:relative; top: 70px; text-align: left; line-height: 40px; height: 40px; border: 1px solid black; float: left; width: 50%; border-radius: 10px">
+            &nbsp; {{ users.schoolssn }}</div>
+        <button style="position:relative; border-radius: 10px; top: 70px; left: 10px; text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 10%; padding-left: 10px">
+            수정
+        </button>
+    </div>
 </div>
-
 </body>
 </html>
