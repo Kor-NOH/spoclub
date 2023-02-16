@@ -83,6 +83,7 @@ class Register(APIView):
         # 키 에러
         except KeyError:
             return Response({'message': "KEY_ERROR"}, status=400)
+
         User.objects.create(name=name,
                             id=id,
                             pw=make_password(pw),
@@ -141,13 +142,35 @@ class Change_pw(APIView):
     def get(self, request):
 
         id = request.session.get('id', None)
-
         if id is None:
             return render(request, "swlab/unknow_user_main.html")
 
         user = User.objects.filter(id=id).first()
-
         if user is None:
             return render(request, "swlab/unknow_user_main.html")
 
         return render(request, "swlab/change_pw.html")
+
+    def post(self, request):
+
+        oldpw = request.data.get('oldpw', None)
+        newpw = request.data.get('newpw', None)
+        chnewpw = request.data.get('chnewpw', None)
+
+        try:
+            # 이전 비밀번호가 공백일 때
+            if oldpw == '':
+                messages.info(request, '이전 비밀번호를 입력해주세요.')
+                return Response(status=400)
+            # 새 비밀번호가 공백일 때
+            if newpw == '':
+                messages.info(request, '(새 비밀번호를 입력해주세요.')
+                return Response(status=400)
+
+            # 새 비밀번호 확인이 공백일 때
+            if chnewpw == '':
+                messages.info(request, '새 비밀번호 확인을 입력해주세요.')
+                return Response(status=400)
+
+        except KeyError:
+            return Response({'message': "KEY_ERROR"}, status=400)

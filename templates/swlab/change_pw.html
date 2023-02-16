@@ -55,34 +55,88 @@
     <h1 style="text-align: center; border-bottom: medium solid blue"> 비밀번호 변경 </h1>
     <p></p>
     <div style="position: relative; right: 30px; font-style: italic; font-family: fantasy">
-        <div style="position:relative; text-align: center; line-height: 40px; top: 10px; height: 40px; border: white; float: left; width: 40%"> 이전 비밀번호
+        <div style="position:relative; text-align: center; line-height: 40px; top: 10px; height: 40px; border: white; float: left; width: 40%">
+            이전 비밀번호
         </div>
-        <input type="text" class="form-control" style="position: relative; top: 15px; height: 24px; width: 60%; font-size: 14px; float: left;" id="oldpw">
-                    <label for="oldpw" style="font-size: 12px;padding: 4px 10px"></label>
+        <input type="password" class="form-control"
+               style="position: relative; top: 15px; height: 24px; width: 60%; font-size: 14px; float: left;"
+               id="oldpw">
+        <label for="oldpw" style="font-size: 12px;padding: 4px 10px"></label>
 
 
-
-        <div style="position:relative; top: 40px; text-align: center; line-height: 40px; height: 40px; border: white; width: 40%"> 새 비밀번호
+        <div style="position:relative; top: 40px; text-align: center; line-height: 40px; height: 40px; border: white; width: 40%">
+            새 비밀번호
         </div>
-        <input type="text" class="form-control" style="position: relative; left: 220px; top: 10px; width: 60%; font-size: 14px; height: 24px" id="newpw">
-                    <label for="newpw" style="font-size: 12px;padding: 4px 10px"></label>
+        <input type="password" class="form-control"
+               style="position: relative; left: 220px; top: 10px; width: 60%; font-size: 14px; height: 24px" id="newpw">
+        <label for="newpw" style="font-size: 12px;padding: 4px 10px"></label>
 
 
-        <div style="position:relative; top: 50px; text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 40%"> 새 비밀번호 확인
+        <div style="position:relative; top: 50px; text-align: center; line-height: 40px; height: 40px; border: white; float: left; width: 40%">
+            새 비밀번호 확인
         </div>
-        <input type="text" class="form-control" style="position: relative; top: 30px; width: 60%; font-size: 14px; float: left; height: 24px" id="chnewpw">
-                    <label for="chnewpw" style="font-size: 12px;padding: 4px 10px"></label>
 
-        <button style="position: relative; top: 120px">변경하기</button>
+        <input type="password" class="form-control"
+               style="position: relative; top: 30px; width: 60%; font-size: 14px; float: left; height: 24px"
+               id="chnewpw">
+        <label for="chnewpw" style="font-size: 12px;padding: 4px 10px"></label>
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <p>{{ message.message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <button id="chnewpwbtn" style="position: relative; top: 120px">변경하기</button>
 
     </div>
 </div>
 <div style="position: relative; top: 25px; left: 570px;">
-    <button id="profilebtn" onclick="location.href='profile'" onmousemove="PcolorChange()" onmouseleave="PcolorReChange()" style="background-color: white; border: medium solid blue; border-radius: 10px">내 정보</button>
-    <button id="chpwbtn" onclick="location.href='change_pw'" onmousemove="CcolorChange()" onmouseleave="CcolorReChange()" style="background-color: white; border: medium solid blue; border-radius: 10px">비밀번호 변경</button>
+    <button id="profilebtn" onclick="location.href='profile'" onmousemove="PcolorChange()"
+            onmouseleave="PcolorReChange()"
+            style="background-color: white; border: medium solid blue; border-radius: 10px">내 정보
+    </button>
+    <button id="chpwbtn" onclick="location.href='change_pw'" onmousemove="CcolorChange()"
+            onmouseleave="CcolorReChange()"
+            style="background-color: white; border: medium solid blue; border-radius: 10px">비밀번호 변경
+    </button>
 </div>
 </body>
+
+
 <script>
+
+    $('#chnewbtn').click(function () {
+
+        let oldpw = $('#oldpw').val();
+        let newpw = $('#newpw').val();
+        let chnewpw = $('#chnewpw').val();
+        console.log(oldpw, newpw, chnewpw)
+
+        $.ajax({
+            url: "change_pw",
+            data: {
+                oldpw: oldpw,
+                newpw: newpw,
+                chnewpw: chnewpw
+            },
+            method: "POST",
+            success: function (data) {
+                console.log("성공");
+                alert("비밀번호 변경에 성공했습니다.");
+                location.replace('/profile');
+
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+                location.replace('/change_pw');
+            },
+            complete: function () {
+                console.log("완료");
+            }
+        })
+    })
+
     function CcolorChange() {
         var CBcolor = document.getElementById("chpwbtn");
         CBcolor.style.backgroundColor = "skyblue";
