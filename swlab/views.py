@@ -136,3 +136,18 @@ class Logout(APIView):
 class Unknow_user_main(APIView):
     def get(self, request):
         return render(request, "swlab/unknow_user_main.html")
+
+class Change_pw(APIView):
+    def get(self, request):
+
+        id = request.session.get('id', None)
+
+        if id is None:
+            return render(request, "swlab/unknow_user_main.html")
+
+        user = User.objects.filter(id=id).first()
+
+        if user is None:
+            return render(request, "swlab/unknow_user_main.html")
+
+        return render(request, "swlab/change_pw.html")
