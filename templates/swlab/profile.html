@@ -77,8 +77,29 @@
     </div>
 </div>
 <div style="position: relative; top: 25px; left: 570px;">
-    <button style="border: medium solid blue; border-radius: 10px">내 정보</button>
-    <button style="border: medium solid blue; border-radius: 10px">비밀번호 변경</button>
+    <button id="profilebtn" onclick="location.href='profile'" onmousemove="PcolorChange()" onmouseleave="PcolorReChange()" style="background-color: white; border: medium solid blue; border-radius: 10px">내 정보</button>
+    <button id="chpwbtn" onclick="location.href='change_pw'" onmousemove="CcolorChange()" onmouseleave="CcolorReChange()" style="background-color: white; border: medium solid blue; border-radius: 10px">비밀번호 변경</button>
 </div>
 </body>
+<script>
+    function CcolorChange() {
+        var CBcolor = document.getElementById("chpwbtn");
+        CBcolor.style.backgroundColor = "skyblue";
+    }
+
+    function CcolorReChange() {
+        var CBcolor = document.getElementById("chpwbtn");
+        CBcolor.style.backgroundColor = "white";
+    }
+
+    function PcolorChange() {
+        var PBcolor = document.getElementById("profilebtn");
+        PBcolor.style.backgroundColor = "skyblue";
+    }
+
+    function PcolorReChange() {
+        var PBcolor = document.getElementById("profilebtn");
+        PBcolor.style.backgroundColor = "white";
+    }
+</script>
 </html>
