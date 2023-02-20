@@ -101,38 +101,52 @@
             style="background-color: white; border: medium solid blue; border-radius: 10px">비밀번호 변경
     </button>
 </div>
+<div>
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <p>{{ message.message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 </body>
 
 
 <script>
-    $('#chnewbtn').click(function () {
+    $('#chnewpwbtn').click(function () {
 
         let oldpw = $('#oldpw').val();
         let newpw = $('#newpw').val();
         let chnewpw = $('#chnewpw').val();
-        console.log(oldpw, newpw, chnewpw)
+
+        console.log("hi")
+        console.log(chnewpw, newpw, oldpw)
 
         $.ajax({
-            url: "change_pw",
+            url: "chnage_pw",
             data: {
-                oldpw: oldpw,
-                newpw: newpw,
-                chnewpw: chnewpw
+                name : name,
+                id : id,
+                pw : pw,
+                pw_again : pw_again,
+                phonenum : phonenum,
+                schoolssn : schoolssn
             },
-            method: "POST",
+            method : "POST",
             success: function (data) {
                 console.log("성공");
-                alert("비밀번호 변경에 성공했습니다.");
-                location.replace('/profile');
+                alert("회원가입 성공했습니다. 로그인해주세요.");
+                location.replace('/login');
 
             },
             error: function (request, status, error) {
                 console.log("에러");
-                location.replace('/change_pw');
+                location.replace('/register');
             },
             complete: function () {
                 console.log("완료");
-            }
+        }
         })
     })
 

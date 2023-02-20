@@ -89,6 +89,7 @@ class Register(APIView):
                             pw=make_password(pw),
                             phonenum=phonenum,
                             schoolssn=schoolssn)
+
         return Response(status=200)
 
 
@@ -149,7 +150,7 @@ class Change_pw(APIView):
         if user is None:
             return render(request, "swlab/unknow_user_main.html")
 
-        return render(request, "swlab/change_pw.html")
+        return render(request, "swlab/change_pw.html", context=dict(users=user))
 
     def post(self, request):
 
@@ -174,3 +175,5 @@ class Change_pw(APIView):
 
         except KeyError:
             return Response({'message': "KEY_ERROR"}, status=400)
+
+        return Response(status=200)
