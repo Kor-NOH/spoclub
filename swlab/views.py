@@ -19,7 +19,7 @@ class Main(APIView):
 
         if user is None:
             return render(request, "swlab/unknow_user_main.html")
-        #
+
         # 접속하기 버튼을 눌렀을때
         # if id_insert, pw_insert = id, pw:     //아이디 비번 재입력하고 그게 원래 계정이랑 맞다면
         #     os.popen("ssh 22port")    // 22포트로 접근
@@ -31,8 +31,7 @@ class Main(APIView):
         #            os.popen("keygen") //본인 키 생성
         #            os.changedirectory // 본인 키의 디렉토리명 변경
         #            os.popen("ssh 사용자명/ssh키폴더/8022port") // 키로 8022포트 접속
-        #     os.popen("keygen")    // 22포트에서 개,공키 생성
-        #
+
         # else: // 재입력한 아이디 비번이 다르다면
         #     error("아이디 비번 틀림")    // 경고문과 동시에 아이디,비번 재입력
 
