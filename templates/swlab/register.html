@@ -26,7 +26,7 @@
                          src="http://snslab.cu.ac.kr/data/common/6e78f50f6b9455e42cb6.png">
                     </a>
                 </div>
-                <div style="font-weight: bold; color: gray; padding-bottom: 20px; padding-top: 20px">가입 시, swlab이 제공하는 모든 서비스를 이용하실 수 있습니다.</div>
+                <div style="font-weight: bold; color: gray; padding-bottom: 20px; padding-top: 20px">가입 시, Spoclub이 제공하는 모든 서비스를 이용하실 수 있습니다.</div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_name"
                            placeholder="name@example.com">
@@ -49,9 +49,9 @@
                     <span id="checkNoticepw" style="font-size: x-small; "></span>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_schoolssn"
+                    <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_age"
                            placeholder="name@example.com">
-                    <label for="input_schoolssn" style="font-size: 12px;padding: 4px 10px">학번을 입력하세요</label>
+                    <label for="input_schoolssn" style="font-size: 12px;padding: 4px 10px">나이를 입력하세요</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" style="font-size: 14px; height: 24px" id="input_phonenum"
@@ -83,9 +83,9 @@
         let pw = $('#input_pw').val();
         let pw_again = $('#input_pw_again').val();
         let phonenum = $('#input_phonenum').val();
-        let schoolssn = $('#input_schoolssn').val();
+        let age = $('#input_age').val();
 
-        console.log(name, id, pw, phonenum, schoolssn)
+        console.log(name, id, pw, phonenum, age)
 
         $.ajax({
             url: "register",
@@ -95,7 +95,7 @@
                 pw : pw,
                 pw_again : pw_again,
                 phonenum : phonenum,
-                schoolssn : schoolssn
+                age : age
             },
             method : "POST",
             success: function (data) {

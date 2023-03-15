@@ -54,7 +54,7 @@ class Register(APIView):
         pw = request.data.get('pw', None)
         pw_again = request.data.get('pw_again', None)
         phonenum = request.data.get('phonenum', None)
-        schoolssn = request.data.get('schoolssn', None)
+        age = request.data.get('age', None)
         try:
             # 이름(실명) 입력이 공백일 때
             if name == '':
@@ -72,9 +72,9 @@ class Register(APIView):
             if pw_again == '':
                 messages.info(request, '비밀번호 확인을 입력해주세요.')
                 return Response(status=400)
-            # 학번 입력이 공백일 때
-            if schoolssn == '':
-                messages.info(request, '학번 입력해주세요.')
+            # 나이 입력이 공백일 때
+            if age == '':
+                messages.info(request, '나이를 입력해주세요.')
                 return Response(status=400)
             # 전화번호 입력이 공백일 때
             if phonenum == '':
@@ -83,10 +83,6 @@ class Register(APIView):
             # 아이디 중복일 때
             if User.objects.filter(id=id).exists():
                 messages.info(request, '이미 가입된 아이디입니다.')
-                return Response(status=400)
-            # 학번 중복일 때
-            if User.objects.filter(schoolssn=schoolssn).exists():
-                messages.info(request, '이미 가입된 학번입니다.')
                 return Response(status=400)
             # 전화번호 중복일 때
             if User.objects.filter(phonenum=phonenum).exists():
@@ -109,7 +105,7 @@ class Register(APIView):
                             id=id,
                             pw=make_password(pw),
                             phonenum=phonenum,
-                            schoolssn=schoolssn)
+                            age=age)
 
         return Response(status=200)
 

@@ -6,4 +6,4 @@ class User(models.Model):
     id = models.TextField(primary_key=True)         # 아이디
     pw = models.TextField()                         # 비밀 번호
     phonenum = models.CharField(max_length=30)   # 전화 번호
-    schoolssn = models.CharField(max_length=30)  # 학번
+    age = models.IntegerField(null=True)        # 나이
