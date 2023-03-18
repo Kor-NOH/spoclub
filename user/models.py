@@ -7,3 +7,6 @@ class User(models.Model):
     pw = models.TextField()                         # 비밀 번호
     phonenum = models.CharField(max_length=30)   # 전화 번호
     age = models.IntegerField(null=True)        # 나이
+
+class Images(models.Model):
+    imgfile = models.ImageField(null=True, upload_to="", blank=True) # 이미지 컬럼 추가
