@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from user.models import User
+from user.models import User, Images
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.response import Response
 from django.contrib import messages
@@ -19,27 +19,6 @@ class Main(APIView):
 
         if user is None:
             return render(request, "swlab/unknow_user_main.html")
-
-        # 접속하기 버튼을 눌렀을때
-        # if id_insert, pw_insert = id, pw:     //아이디 비번 재입력하고 그게 원래 계정이랑 맞다면
-        #     os.popen("ssh 22port")    // 22포트로 접근
-
-        #     if 사용자명/ssh 폴더가 있으면 : // 사용자에 맞는 키가 있는지 없는지 확인
-        #            os.popen("ssh 사용자명/ssh키폴더/8022port") // 키로 8022포트 접속
-
-        #     else: //키가 없다면
-        #            os.popen("keygen") //본인 키 생성
-        #            os.changedirectory // 본인 키의 디렉토리명 변경
-        #            os.popen("ssh 사용자명/ssh키폴더/8022port") // 키로 8022포트 접속
-
-        #           ------------------------02.23 변경사항--------------------------------
-        #           -------api는 두고 DCUCODE 디비랑 연동하기로 해서 웹에서 ssh 띄우기 용--------
-        #            os.checkIP //본인에게 할당받은 파드의 포트번호를 확인
-        #            mv.url("yourselfIP")   // url을 본인이 할당받은 아이피로 변경 후 접속
-        #           ---------------------------------------------------------------------
-
-        # else: // 재입력한 아이디 비번이 다르다면
-        #     error("아이디 비번 틀림")    // 경고문과 동시에 아이디,비번 재입력
 
         return render(request, "swlab/main.html", context=dict(user=user))
 
@@ -194,3 +173,18 @@ class Change_pw(APIView):
             return Response({'message': "KEY_ERROR"}, status=400)
 
         return Response(status=200)
+
+
+class Addimage(APIView):
+    def get(self, request):
+        return render(request, "swlab/addimage.html")
+
+    def post(self, request):
+        imgfile = request.FILES["imgfile"]
+
+        imgfile = Images(imgfile = imgfile)
+        imgfile.save()
+
+        imgfile = Images.objects.all()
+
+        return render(request, "swlab/addimage.html", context= {imgfile : imgfile})

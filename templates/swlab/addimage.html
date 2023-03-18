@@ -10,10 +10,32 @@
     <form method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="imgfile">사진 : </label>
+            {% csrf_token %}
             <input type="file" name="imgfile" id="imgfile">
+            <input type="submit" value="등록하기">
         </div>
     </form>
 </div>
 
 </body>
 </html>
+<script>
+        $('#addimg_button').click(function () {
+
+        let imgfile = $('#imgfile').val();
+
+        $.ajax({
+            url: "addimage",
+            data: {
+                imgfile : imgfile
+            },
+            method : "POST",
+            success: function (data) {
+                console.log("성공");
+                alert("이미지를 성공적으로 등록하였습니다.");
+                location.replace('/addimage');
+
+            }
+        });
+    });
+</script>
