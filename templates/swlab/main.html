@@ -65,7 +65,7 @@
             </header>
             <a><img src="media/축구사진.png" style="width: 50%"></a>
             <ul style="padding-top: 10px">
-                <a class="button">더 보기</a>
+                <button type="button" id="selectbtn1" style="background-color: beige; color: skyblue; border: 1px solid skyblue; border-radius: 4px" onmousemove="colorChange1()" onmouseleave="colorReChange1()">더 보기</button>
             </ul>
         </article>
         <article style="border: 1px solid gray">
@@ -75,7 +75,7 @@
             </header>
             <a><img src="media/농구사진.png" style="width: 50%"></a>
             <ul style="padding-top: 10px">
-                <a class="button">더 보기</a>
+                <button type="button" id="selectbtn2" style="background-color: beige; color: skyblue; border: 1px solid skyblue; border-radius: 4px" onmousemove="colorChange2()" onmouseleave="colorReChange2()">더 보기</button>
             </ul>
         </article>
     </section>
@@ -87,7 +87,7 @@
             </header>
             <a><img src="media/탁구사진.png" style="width: 50%"></a>
             <ul style="padding-top: 10px">
-                <a class="button">더 보기</a>
+                <button type="button" id="selectbtn3" style="background-color: beige; color: skyblue; border: 1px solid skyblue; border-radius: 4px" onmousemove="colorChange3()" onmouseleave="colorReChange3()">더 보기</button>
             </ul>
         </article>
         <article style="border: 1px solid gray">
@@ -97,21 +97,57 @@
             </header>
             <a><img src="media/게이트볼사진.png" style="width: 50%"></a>
             <ul style="padding-top: 10px">
-                <a class="button">더 보기</a>
+                <button type="button" id="selectbtn4" style="background-color: beige; color: skyblue; border: 1px solid skyblue; border-radius: 4px" onmousemove="colorChange4()" onmouseleave="colorReChange4()">더 보기</button>
             </ul>
         </article>
     </section>
 </body>
 
 <script>
-    function colorChange() {
-        var Bcolor = document.getElementById("sshbtn");
+    function colorChange1() {
+        var Bcolor = document.getElementById("selectbtn1");
         Bcolor.style.backgroundColor = "skyblue";
+        Bcolor.style.color = "black";
     }
 
-    function colorReChange() {
-        var Bcolor = document.getElementById("sshbtn");
-        Bcolor.style.backgroundColor = "white";
+    function colorReChange1() {
+        var Bcolor = document.getElementById("selectbtn1");
+        Bcolor.style.backgroundColor = "beige";
+        Bcolor.style.color = "skyblue";
     }
+    function colorChange2() {
+        var Bcolor = document.getElementById("selectbtn2");
+        Bcolor.style.backgroundColor = "skyblue";
+        Bcolor.style.color = "black";
+    }
+
+    function colorReChange2() {
+        var Bcolor = document.getElementById("selectbtn2");
+        Bcolor.style.backgroundColor = "beige";
+        Bcolor.style.color = "skyblue";
+    }
+    function colorChange3() {
+        var Bcolor = document.getElementById("selectbtn3");
+        Bcolor.style.backgroundColor = "skyblue";
+        Bcolor.style.color = "black";
+    }
+
+    function colorReChange3() {
+        var Bcolor = document.getElementById("selectbtn3");
+        Bcolor.style.backgroundColor = "beige";
+        Bcolor.style.color = "skyblue";
+    }
+    function colorChange4() {
+        var Bcolor = document.getElementById("selectbtn4");
+        Bcolor.style.backgroundColor = "skyblue";
+        Bcolor.style.color = "black";
+    }
+
+    function colorReChange4() {
+        var Bcolor = document.getElementById("selectbtn4");
+        Bcolor.style.backgroundColor = "beige";
+        Bcolor.style.color = "skyblue";
+    }
+
 </script>
 </html>
