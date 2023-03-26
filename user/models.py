@@ -11,8 +11,3 @@ class User(models.Model):
 
 class Images(models.Model):
     imgfile = models.ImageField(null=True, upload_to="", blank=True) # 이미지 컬럼 추가
-
-class SoccerTeam(models.Model):
-    stname = models.TextField(max_length=10)    # 축구 팀 이름
-    sport_type = models.TextField(max_length=20)    # 스포츠 종목
-    open_date = timestamp(null = False)     # 생성 날짜
