@@ -188,3 +188,7 @@ class Addimage(APIView):
         imgfile = Images.objects.all()
 
         return render(request, "swlab/addimage.html", context= {imgfile : imgfile})
+
+class Soccer_list(APIView):
+    def get(self, request):
+        return render(request, "swlab/soccer_list.html")

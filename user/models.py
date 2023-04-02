@@ -11,3 +11,10 @@ class User(models.Model):
 
 class Images(models.Model):
     imgfile = models.ImageField(null=True, upload_to="", blank=True) # 이미지 컬럼 추가
+
+class SpoTeam(models.Model):
+    sportevent = models.TextField(max_length=20)    # 종목
+    name = models.TextField(primary_key=True, max_length=20)    # 팀 이름
+    created_at = models.DateTimeField(auto_now_add=True)    # 팀 생성 시간
+    team_mark = models.ImageField(null=True)
+    team_intro = models.TextField(max_length=200)   # 팀 소개글
